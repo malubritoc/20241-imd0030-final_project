@@ -1,5 +1,7 @@
 # Projeto Final: Recurso de autocompletar
 
+teste git
+
 Escreva um programa para implementar o preenchimento automático (também conhecido como _autocomplete_) para um determinado conjunto de $N$ termos, onde um termo é representado por uma _string_ e um peso não negativo associado. Ou seja, dado um prefixo, encontre todas os termos que começam com o prefixo fornecido, em ordem decrescente de peso.
 
 A função de auto-completar é extremamente comum em aplicações modernas. À medida que o usuário digita, o programa prevê a consulta completa (normalmente uma palavra ou frase) que o usuário pretende digitar. O preenchimento automático é mais eficaz quando há um número limitado de consultas prováveis. Por exemplo, o [Internet Movie Database](https://www.imdb.com/) o utiliza para exibir os nomes dos filmes conforme o usuário digita; os mecanismos de pesquisa o utilizam para exibir sugestões conforme o usuário insere consultas de pesquisa na _web_; os telefones celulares o utilizam para agilizar o processo de entrada de texto.
@@ -47,7 +49,7 @@ Defina uma classe chamada `Termo` que representa um termo do preenchimento autom
 
 Esta classe deve sobrecarregar o operador de comparação `<` para que seja possível ordenar objetos deste tipo utilizando `std::sort()` da biblioteca padrão. Essa comparação deve ser baseada no atributo `termo`.
 
-Você deve também incluir, além do construtor parametrizado, dois métodos estáticos de comparação de dois objetos `Termo`: um baseado em prefixo de `termo` e outro baseado no `peso`. Esses dois métodos são utilizados como *funções de comparação* que serão passados como argumento do método de ordenação da sua `ListaOrdenada`.
+Você deve também incluir, além do construtor parametrizado, dois métodos estáticos de comparação de dois objetos `Termo`: um baseado em prefixo de `termo` e outro baseado no `peso`. Esses dois métodos são utilizados como _funções de comparação_ que serão passados como argumento do método de ordenação da sua `ListaOrdenada`.
 
 Exemplo de declaração para a classe `Termo` (você não é obrigado a usar essa declaração):
 
@@ -89,7 +91,7 @@ class Termo {
 
 ## Parte 3: Criação da classe `Autocompletar`
 
-Defina uma classe chamada `Autocompletar` que provê a funcionalidade de preenchimento automático para um conjunto de objetos `Termo`. Para este projeto, utilize o **algoritmo de busca binária** para encontrar com eficiência todos os termos que tem o atributo `termo` iniciando com um determinado prefixo. Em seguida, classifique os termos correspondentes em ordem decrescente por `peso`. 
+Defina uma classe chamada `Autocompletar` que provê a funcionalidade de preenchimento automático para um conjunto de objetos `Termo`. Para este projeto, utilize o **algoritmo de busca binária** para encontrar com eficiência todos os termos que tem o atributo `termo` iniciando com um determinado prefixo. Em seguida, classifique os termos correspondentes em ordem decrescente por `peso`.
 
 Para fazer isso, você precisa (1) classificar os termos em ordem alfabética por `termo` e depois (2) usar a busca binária para pesquisar um determinado prefixo, em uma lista ordenada. Lembre que para um determinado prefixo os termos correspondentes podem ser mais de um, e você precisará posteriomente ordena-los por peso.
 
@@ -109,14 +111,14 @@ Já são fornecidos vários arquivos de entrada de amostra para testar o seu pro
 
 ## Execução do programa
 
-Quando você executar o seu programa, ele deve receber como parâmetros posicionais o *dataset* desejado e um valor inteiro `k`. Esse valor inteiro limita a quantidade de retorno de termos do seu recurso de autocompletar para `k` termos caso ele retorne um valor maior ou igual a `k`.
+Quando você executar o seu programa, ele deve receber como parâmetros posicionais o _dataset_ desejado e um valor inteiro `k`. Esse valor inteiro limita a quantidade de retorno de termos do seu recurso de autocompletar para `k` termos caso ele retorne um valor maior ou igual a `k`.
 
 Seu programa deve então permitir que o usuário entre com a consulta desejada, e então apertar `<ENTER>` para realizar a etapa de preenchimento automático. O programa deve retornar os `k` termos que casaram com o prefixo informado, ordenado por peso. Ele pode repetir o processo quantas vezes quiser, até que seja enviado a palavra `sair`, que encerra a execução do programa. Veja um exemplo de execução e interação com o programa:
 
 ```bash
 $ ./bin/autocompletar datasets/actors.txt 10
 
-Entre com o termo a ser auto-completado: (digite "sair" para encerrar o programa): 
+Entre com o termo a ser auto-completado: (digite "sair" para encerrar o programa):
 Will <ENTER>
 2790243210      Will Smith (I)
 2739685985      Willem Dafoe
@@ -129,7 +131,7 @@ Will <ENTER>
 1172371613      William Shatner
 1132672375      William Sadler (I)
 
-Entre com o termo a ser auto-completado: (digite "sair" para encerrar o programa): 
+Entre com o termo a ser auto-completado: (digite "sair" para encerrar o programa):
 Mary <ENTER>
 1811632876      Mary Ellen Trainor
 1322246171      Mary Steenburgen
@@ -142,10 +144,10 @@ Mary <ENTER>
 655198435       Mary McDonnell (I)
 617010839       Mary-Louise Parker
 
-Entre com o termo a ser auto-completado: (digite "sair" para encerrar o programa): 
+Entre com o termo a ser auto-completado: (digite "sair" para encerrar o programa):
 sair <ENTER>
 
-$ 
+$
 ```
 
 ## Possível fluxo de execução
