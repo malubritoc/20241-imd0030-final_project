@@ -1,14 +1,12 @@
 #include "termo.h"
 #include <iostream>
-#include <algorithm> // Para usar std::min
+#include <algorithm>
 
-// Construtor padrão
 Termo::Termo() : termo(""), peso(0) {}
 
-// Construtor parametrizado
 Termo::Termo(std::string termo, long peso) : termo(termo), peso(peso) {}
 
-// Método estático para comparar dois termos de forma decrescente pelo peso
+// metodo p comparar dois termos de forma decrescente pelo peso
 int Termo::compararPeloPeso(Termo T1, Termo T2)
 {
     if (T1.peso > T2.peso)
@@ -25,10 +23,9 @@ int Termo::compararPeloPeso(Termo T1, Termo T2)
     }
 }
 
-// Método estático para comparar dois termos por ordem alfabética usando os primeiros r caracteres
+// metodo p comparar dois termos por ordem alfabetica
 int Termo::compararPeloPrefixo(Termo T1, Termo T2)
 {
-    // Limitar o tamanho do prefixo ao comprimento mínimo das duas strings
     int minLength;
 
     if (T1.termo.size() <= T2.termo.size())
@@ -57,20 +54,20 @@ int Termo::compararPeloPrefixo(Termo T1, Termo T2)
     }
 }
 
-// Sobrecarga do operador "<" para comparação entre termos
+// sobrecarrega o operador "<" para comparação entre termos
 bool Termo::operator<(Termo T2)
 {
     return this->termo < T2.termo;
 }
 
-// Sobrecarga do operador "<<" para imprimir um Termo
+// sobrecarrega o operador "<<" para imprimir um termo
 std::ostream &operator<<(std::ostream &out, const Termo &t)
 {
     out << t.termo << " (" << t.peso << ")";
     return out;
 }
 
-// Método para retornar o termo
+// retorna o termo
 std::string Termo::getTermo() const
 {
     return termo;

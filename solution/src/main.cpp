@@ -7,9 +7,9 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    if (argc < 2)
+    if (argc < 3)
     {
-        cout << "Uso: " << argv[0] << " <nome_do_arquivo>" << endl;
+        cout << "Uso: " << argv[0] << " <nome_do_arquivo> <k>" << endl;
         return 1;
     }
 
@@ -28,18 +28,21 @@ int main(int argc, char *argv[])
     string linha;
     while (getline(arquivo, linha))
     {
-        size_t pos = linha.find('\t'); // Localiza o delimitador de tabulação
+        size_t pos = linha.find('\t');
+        if (pos == string::npos)
+        {
+            cout << "formato inválido na linha: " << linha << endl;
+            continue;
+        }
 
-        // Extrai o peso e o termo
         string termo = linha.substr(pos + 1);
         string peso = linha.substr(0, pos);
 
-        Termo t(termo, stol(peso));      // Cria um objeto Termo
-        autocompletar.adicionarTermo(t); // Adiciona o termo ao autocompletar
-
-        // Imprime o peso e o termo
-        cout << "Peso: " << peso << ", Termo: " << termo << endl;
+        Termo t(termo, stol(peso));      // cria um termo
+        autocompletar.adicionarTermo(t); // adiciona o termo no autocompletar
     }
+
+    autocompletar.preparar();
 
     cout << "Entre com o termo a ser auto-completado: (digite 'sair' para encerrar o programa):\n";
 
@@ -48,11 +51,12 @@ int main(int argc, char *argv[])
 
     while (prefixo != "sair")
     {
-        vector<Termo> termos = autocompletar.buscar(prefixo);
+        ListaOrdenada<Termo> termos = autocompletar.buscar(prefixo);
 
-        for (int i = 0; i < k; i++)
+        for (int i = 0; i < k && i < termos.tamanho(); i++)
         {
-            cout << termos[i] << endl;
+
+            cout << termos.itens[i] << endl;
         }
 
         cout << "Entre com o termo a ser auto-completado: (digite 'sair' para encerrar o programa):\n";
